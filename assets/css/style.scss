@@ -88,3 +88,33 @@
     background-color: #e70f0f;
   }
 
+ /* styling for the calculator equals button */
+ .calculator-equals {
+  @extend .button;
+  background-color: #e70f0f;
+}
+a,h1,h2 {  
+  color: rgb(13, 11, 91)
+}
+
+a,h3,h4 {
+  color: rgb(97, 37, 37)
+}
+
+#header nav ul li a {
+  background: none;
+  border: none;
+  }
+  #header nav ul li a:hover{
+    border: none;
+    background: none;
+    background-color: rgb(191, 15, 15);
+  color: rgb(255, 255, 255); 
+}
+
+body {
+  font-family: monospace;
+}
+a h1,h2,h3,h4 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
