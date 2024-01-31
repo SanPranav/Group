@@ -22,3 +22,6 @@ courses: { compsci: {week: 1} }
  - Wall Climb
  - Wall Slide
  - Ladder 
+ - Jump Boost Power Up
+ - Jump Pad / Trampoline
+
