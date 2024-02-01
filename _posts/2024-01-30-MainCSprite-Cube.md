@@ -123,41 +123,4 @@ courses: { compsci: {week: 1} }
                 break;
         }
     });
-    public class PlayerController : MonoBehaviour
-{
-    public float jumpForce = 10f;
-    public int maxJumps = 2;
-    private int jumpsRemaining;
-
-    private bool isGrounded;
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0 && isGrounded)
-        {
-            Jump();
-        }
-    }
-
-    void Jump()
-    {
-        // Apply jump force
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpForce);
-
-        // Reduce jumps remaining
-        jumpsRemaining--;
-
-        // Check if the player is still grounded
-        isGrounded = false;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            jumpsRemaining = maxJumps;
-        }
-    }
-}
-</script>
+    <script>
