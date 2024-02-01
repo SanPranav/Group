@@ -16,6 +16,7 @@ courses: { compsci: {week: 1} }
     var t = { blocks: [0x0E40, 0x4C40, 0x4E00, 0x4640], color: 'purple' };
     var z = { blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: 'red'    };
 
+    
     function eachblock(type, x, y, dir, fn) {
   var bit, result, row = 0, col = 0, blocks = type.blocks[dir];
   for(bit = 0x8000 ; bit > 0 ; bit = bit >> 1) {
