@@ -9,6 +9,7 @@ courses: { compsci: {week: 1} }
 ---
 
 <style>
+
     #canvas {
         margin: 1;
         border: 5px solid grey;
@@ -122,4 +123,4 @@ courses: { compsci: {week: 1} }
                 break;
         }
     });
-</script>
+    <script>
