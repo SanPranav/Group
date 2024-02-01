@@ -7,7 +7,7 @@ description: Ideas for the Cube Escape Sprite.
 type: tangibles
 courses: { compsci: {week: 1} }
 ---
- %%html
+
 <style>
     #canvas {
         margin: 0;
@@ -118,6 +118,7 @@ courses: { compsci: {week: 1} }
             case 87:
                 console.log('up');
                 player.velocity.y = -20;
+                keys.right.pressed = false;
                 break;
         }
     });
