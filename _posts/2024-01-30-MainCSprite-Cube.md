@@ -10,8 +10,8 @@ courses: { compsci: {week: 1} }
 
 <style>
     #canvas {
-        margin: 0;
-        border: 1px solid white;
+        margin: 1;
+        border: 5px solid grey;
     }
 </style>
 <canvas id='canvas'></canvas>
@@ -118,7 +118,7 @@ courses: { compsci: {week: 1} }
             case 87:
                 console.log('up');
                 player.velocity.y = -20;
-                keys.right.pressed = false;
+                keys.down.pressed = false;
                 break;
         }
     });
