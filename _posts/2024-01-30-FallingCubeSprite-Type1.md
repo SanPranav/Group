@@ -8,6 +8,9 @@ type: tangibles
 courses: { compsci: {week: 1} }
 ---
 <script>
+
+    <img id="TetrisBlock#1" src="/{{site.baseurl}}/images/TetrisBlock#1.png">
+
     var i = { blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: 'cyan'   };
     var j = { blocks: [0x44C0, 0x8E00, 0x6440, 0x0E20], color: 'blue'   };
     var l = { blocks: [0x4460, 0x0E80, 0xC440, 0x2E00], color: 'orange' };
@@ -16,7 +19,7 @@ courses: { compsci: {week: 1} }
     var t = { blocks: [0x0E40, 0x4C40, 0x4E00, 0x4640], color: 'purple' };
     var z = { blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: 'red'    };
 
-    
+
     function eachblock(type, x, y, dir, fn) {
   var bit, result, row = 0, col = 0, blocks = type.blocks[dir];
   for(bit = 0x8000 ; bit > 0 ; bit = bit >> 1) {
