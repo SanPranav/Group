@@ -9,24 +9,26 @@ courses: { compsci: {week: 1} }
 ---
 
   
+<style>
+    #canvas {
+        margin: 0;
+        border: 10px solid grey;
+    }
+</style>
 <canvas id='canvas'></canvas>
+<script>
+    // Create empty canvas
+    let canvas = document.getElementById('canvas');
+    let c = canvas.getContext('2d');
+    // Set the canvas dimensions
+    canvas.width = 650;
+    canvas.height = 660;
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-    #canvas {
-        margin: 0;
-        border: 500px solid grey;
-    }
-
-   
-  </style>
   <title>Falling Block Animation with Randomized Reset</title>
 </head>
 <body>
@@ -66,13 +68,7 @@ courses: { compsci: {week: 1} }
   box-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* Box shadow for a subtle glow effect */
   transition: background-color 0.3s ease; /* Smooth transition for background color changes */
 }
-    // Create empty canvas
-    let canvas = document.getElementById('canvas');
-    let c = canvas.getContext('2d');
-    // Set the canvas dimensions
-    canvas.width = 650;
-    canvas.height = 660;
-    
+
 </script>
 
 </body>
