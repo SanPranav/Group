@@ -9,10 +9,9 @@ courses: { compsci: {week: 1} }
 ---
 
 <style>
-
     #canvas {
-        margin: 1;
-        border: 5px solid grey;
+        margin: 0;
+        border: 10px solid grey;
     }
 </style>
 <canvas id='canvas'></canvas>
@@ -22,7 +21,7 @@ courses: { compsci: {week: 1} }
     let c = canvas.getContext('2d');
     // Set the canvas dimensions
     canvas.width = 650;
-    canvas.height = 400;
+    canvas.height = 660;
     // Define gravity value
     let gravity = 1.5;
     // Define the Player class
@@ -111,6 +110,8 @@ courses: { compsci: {week: 1} }
                 break;
             case 83:
                 console.log('down');
+                player.velocity.y = 20
+                keys.up.pressed = false;
                 break;
             case 68:
                 console.log('right');
@@ -119,8 +120,8 @@ courses: { compsci: {week: 1} }
             case 87:
                 console.log('up');
                 player.velocity.y = -20;
-                keys.down.pressed = false;
+                keys.up.pressed = false;
                 break;
         }
     });
-    <script>
+</script>
