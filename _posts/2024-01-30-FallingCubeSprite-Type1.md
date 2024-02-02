@@ -23,8 +23,6 @@ courses: { compsci: {week: 1} }
     #canvas {
         margin: 0;
         border: 500px solid grey;
-        width: 500px
-
     }
 
    
@@ -68,7 +66,13 @@ courses: { compsci: {week: 1} }
   box-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* Box shadow for a subtle glow effect */
   transition: background-color 0.3s ease; /* Smooth transition for background color changes */
 }
-
+    // Create empty canvas
+    let canvas = document.getElementById('canvas');
+    let c = canvas.getContext('2d');
+    // Set the canvas dimensions
+    canvas.width = 650;
+    canvas.height = 660;
+    
 </script>
 
 </body>
