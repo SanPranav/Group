@@ -14,16 +14,18 @@ courses: { compsci: {week: 1} }
         border: 10px solid grey;
     }
 </style>
-<canvas id='canvas'></canvas>
+<canvas id="canvas"></canvas>
 <script>
     // Create empty canvas
     let canvas = document.getElementById('canvas');
     let c = canvas.getContext('2d');
     // Set the canvas dimensions
     canvas.width = 650;
-    canvas.height = 660;
+    canvas.height = 675;
     // Define gravity value
-    let gravity = 1.5;
+    let gravity = 1.75;
+    // Define jump cooldown time in milliseconds
+    const jumpCooldown = 750;
     // Define the Player class
     class Player {
         constructor() {
@@ -39,10 +41,12 @@ courses: { compsci: {week: 1} }
             // Dimensions of the player
             this.width = 30;
             this.height = 30;
+            // Jump cooldown timestamp
+            this.lastJumpTime = 0;
         }
         // Method to draw the player on the canvas
         draw() {
-            c.fillStyle = 'red';
+            c.fillStyle = 'white';
             c.fillRect(this.position.x, this.position.y, this.width, this.height);
         }
         // Method to update the players position and velocity
@@ -50,12 +54,53 @@ courses: { compsci: {week: 1} }
             this.draw();
             this.position.y += this.velocity.y;
             this.position.x += this.velocity.x;
+            // Apply gravity if player is not at the bottom
             if (this.position.y + this.height + this.velocity.y <= canvas.height)
                 this.velocity.y += gravity;
             else
                 this.velocity.y = 0;
         }
+        // Method to check if the player can jump
+        canJump() {
+            const currentTime = Date.now();
+            return currentTime - this.lastJumpTime > jumpCooldown;
+        }
+        // Method to handle jumping
+        jump() {
+            if (this.canJump()) {
+                this.velocity.y = -20;
+                this.lastJumpTime = Date.now();
+            }
+        }
     }
+    //--
+    // NEW CODE - PLATFORM
+    //--
+    // Define the Platform class
+    class Platform {
+        constructor(image) {
+            // Initial position of the platform
+            this.position = {
+                x: 0,
+                y: 575
+            }
+            this.image = image;
+            this.width = 650;
+            this.height = 100;
+        }
+        // Method to draw the platform on the canvas
+        draw() {
+            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
+    }
+    //--
+    // NEW CODE - CREATE PLATFORM OBJECT WITH IMAGE
+    //--
+    // Load platform image
+    let image = new Image();
+    image.src = 'https://samayass.github.io/samayaCSA/images/platform.png'
+    // Create a platform object
+    let platform = new Platform(image);
     // Create a player object
     player = new Player();
     // Define keyboard keys and their states
@@ -66,12 +111,17 @@ courses: { compsci: {week: 1} }
         left: {
             pressed: false
         }
-    };
+    }
     // Animation function to continuously update and render the canvas
     function animate() {
         requestAnimationFrame(animate);
         c.clearRect(0, 0, canvas.width, canvas.height);
+        //--
+        // NEW CODE - DRAW PLATFORM
+        //--
+        platform.draw();
         player.update();
+        // Control players horizontal movement
         if (keys.right.pressed && player.position.x + player.width <= canvas.width - 50) {
             player.velocity.x = 15;
         } else if (keys.left.pressed && player.position.x >= 50) {
@@ -79,7 +129,20 @@ courses: { compsci: {week: 1} }
         } else {
             player.velocity.x = 0;
         }
+        //--
+        // NEW CODE  - PLATFORM COLLISIONS
+        //--
+        // Check for collision between player and platform
+        if (
+            player.position.y + player.height <= platform.position.y &&
+            player.position.y + player.height + player.velocity.y >= platform.position.y &&
+            player.position.x + player.width >= platform.position.x &&
+            player.position.x <= platform.position.x + platform.width
+        ) {
+            player.velocity.y = 0;
+        }
     }
+    // Start the animation loop
     animate();
     // Event listener for keydown events
     addEventListener('keydown', ({ keyCode }) => {
@@ -90,14 +153,15 @@ courses: { compsci: {week: 1} }
                 break;
             case 83:
                 console.log('down');
+                keys.up.pressed = false;
                 break;
             case 68:
                 console.log('right');
                 keys.right.pressed = true;
                 break;
             case 87:
-                console.log('up');
-                player.velocity.y -= 20;
+                console.log('up')
+                player.jump();
                 break;
         }
     });
@@ -110,18 +174,12 @@ courses: { compsci: {week: 1} }
                 break;
             case 83:
                 console.log('down');
-                player.velocity.y = 20
                 keys.up.pressed = false;
                 break;
             case 68:
                 console.log('right');
                 keys.right.pressed = false;
                 break;
-            case 87:
-                console.log('up');
-                player.velocity.y = -20;
-                keys.up.pressed = false;
-                break;
         }
-    });
+    })
 </script>
