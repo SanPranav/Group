@@ -59,16 +59,27 @@ courses: { compsci: {week: 1} }
   // function animateLoop() { animate(); requestAnimationFrame(animateLoop); }
   // animateLoop();
 
-   #fallingBlock () {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: blue;
-  border-radius: 10px; /* Rounded corners for a softer look */
-  box-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* Box shadow for a subtle glow effect */
-  transition: background-color 0.3s ease; /* Smooth transition for background color changes */
-}
-
+ class Block  {
+        constructor() {
+            // Initial position and velocity of the player
+            this.position = {
+                x: 100,
+                y: 200
+            };
+            this.velocity = {
+                x: 0,
+                y: 0
+            };
+            // Dimensions of the player
+            this.width = 30;
+            this.height = 30;
+        }
+        // Method to draw the player on the canvas
+        draw() {
+            c.fillStyle = 'blue';
+            c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        }
+ }
 </script>
 
 </body>
