@@ -181,7 +181,7 @@ courses: { compsci: {week: 1} }
                 keys.right.pressed = false;
                 break;
         }
-    })
+    });
 
     
 </script>
