@@ -7,46 +7,162 @@ description: Ideas for the Cube Escape Sprite.
 type: tangibles
 courses: { compsci: {week: 1} }
 ---
-<script>
-
-    <img id="TetrisBlock#1" src="/{{site.baseurl}}/images/TetrisBlock#1.png">
-
-    var i = { blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: 'cyan'   };
-    var j = { blocks: [0x44C0, 0x8E00, 0x6440, 0x0E20], color: 'blue'   };
-    var l = { blocks: [0x4460, 0x0E80, 0xC440, 0x2E00], color: 'orange' };
-    var o = { blocks: [0xCC00, 0xCC00, 0xCC00, 0xCC00], color: 'yellow' };
-    var s = { blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620], color: 'green'  };
-    var t = { blocks: [0x0E40, 0x4C40, 0x4E00, 0x4640], color: 'purple' };
-    var z = { blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: 'red'    };
-
-
-    function eachblock(type, x, y, dir, fn) {
-  var bit, result, row = 0, col = 0, blocks = type.blocks[dir];
-  for(bit = 0x8000 ; bit > 0 ; bit = bit >> 1) {
-    if (blocks & bit) {
-      fn(x + col, y + row);
-    }
-    if (++col === 4) {
-      col = 0;
-      ++row;
-    }
-  }
-};
-
-function occupied(type, x, y, dir) {
-  var result = false
-  eachblock(type, x, y, dir, function(x, y) {
-    if ((x < 0) || (x >= nx) || (y < 0) || (y >= ny) || getBlock(x,y))
-      result = true;
-  });
-  return result;
-};
-
-function unoccupied(type, x, y, dir) {
-  return !occupied(type, x, y, dir);
-};
-
-var pieces = [i,j,l,o,s,t,z];
-var next = pieces[Math.round(Math.random(0, pieces.length-1))];
-
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById("tetrisCanvas");
+        const context = canvas.getContext("2d");
+        const ROWS = 20;
+        const COLS = 10;
+        const BLOCK_SIZE = 30;
+        const board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+        const tetriminos = [
+            [[1, 1, 1, 1]],  // I
+            [[1, 1, 1], [1]], // L
+            [[1, 1, 1], [0, 0, 1]], // J
+            [[1, 1], [1, 1]], // O
+            [[1, 1, 1], [0, 1]], // T
+            [[1, 1], [1, 0, 0], [1]], // Z
+            [[1, 1], [0, 1, 1]], // S
+        ];
+        let currentTetrimino;
+        let currentX = 0;
+        let currentY = 0;
+        function drawSquare(x, y, color) {
+            context.fillStyle = color;
+            context.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+            context.strokeStyle = "#000";
+            context.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+        function drawBoard() {
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    if (board[row][col]) {
+                        drawSquare(col, row, board[row][col]);
+                    }
+                }
+            }
+        }
+        function drawTetrimino() {
+            for (let row = 0; row < currentTetrimino.length; row++) {
+                for (let col = 0; col < currentTetrimino[row].length; col++) {
+                    if (currentTetrimino[row][col]) {
+                        drawSquare(currentX + col, currentY + row, "blue");
+                    }
+                }
+            }
+        }
+        function draw() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawBoard();
+            drawTetrimino();
+        }
+        function collide() {
+            for (let row = 0; row < currentTetrimino.length; row++) {
+                for (let col = 0; col < currentTetrimino[row].length; col++) {
+                    if (currentTetrimino[row][col] && (board[currentY + row] && board[currentY + row][currentX + col]) !== 0) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+         function merge() {
+            for (let row = 0; row < currentTetrimino.length; row++) {
+                for (let col = 0; col < currentTetrimino[row].length; col++) {
+                    if (currentTetrimino[row][col]) {
+                        board[currentY + row][currentX + col] = "blue";
+                    }
+                }
+            }
+        }
+        function rotateTetrimino() {
+            const newTetrimino = [];
+            for (let col = 0; col < currentTetrimino[0].length; col++) {
+                newTetrimino[col] = [];
+                for (let row = currentTetrimino.length - 1; row >= 0; row--) {
+                    newTetrimino[col][currentTetrimino.length - 1 - row] = currentTetrimino[row][col];
+                }
+            }
+            return newTetrimino;
+        }
+        function moveLeft() {
+            currentX -= 1;
+            if (collide()) {
+                currentX += 1;
+            }
+        }
+         function moveRight() {
+            currentX += 1;
+            if (collide()) {
+                currentX -= 1;
+            }
+        }
+        function moveDown() {
+            currentY += 1;
+            if (collide()) {
+                currentY -= 1;
+                merge();
+                spawnTetrimino();
+            }
+        }
+        function spawnTetrimino() {
+            currentTetrimino = tetriminos[Math.floor(Math.random() * tetriminos.length)];
+            currentX = Math.floor((COLS - currentTetrimino[0].length) / 2);
+            currentY = 0;
+            if (collide()) {
+                // Game over, reset the board
+                board.forEach(row => row.fill(0));
+            }
+        }
+        function rotate() {
+            const rotatedTetrimino = rotateTetrimino();
+            if (!checkCollision(rotatedTetrimino)) {
+                currentTetrimino = rotatedTetrimino;
+            }
+        }
+        function checkCollision(newTetrimino) {
+            for (let row = 0; row < newTetrimino.length; row++) {
+                for (let col = 0; col < newTetrimino[row].length; col++) {
+                    if (newTetrimino[row][col] && (board[currentY + row] && board[currentY + row][currentX + col]) !== 0) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "ArrowLeft") {
+                moveLeft();
+            } else if (event.code === "ArrowRight") {
+                moveRight();
+            } else if (event.code === "ArrowDown") {
+                moveDown();
+            } else if (event.code === "Space") {
+                rotate();
+            }
+        });
+        function gameLoop() {
+            moveDown();
+            draw();
+        }
+        setInterval(gameLoop, 1000);
+        spawnTetrimino();
+        draw();
+    </script>
+</body>
+</html>
