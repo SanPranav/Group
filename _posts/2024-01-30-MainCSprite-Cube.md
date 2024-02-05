@@ -121,4 +121,6 @@ courses: { compsci: {week: 1} }
                 break;
         }
     });
+
+    
 </script>

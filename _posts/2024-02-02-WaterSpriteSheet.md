@@ -14,7 +14,7 @@ courses: { compsci: {week: 0} }
 <body>
     <div>
         <canvas id="spriteContainer"> <!-- Within the base div is a canvas. An HTML canvas is used only for graphics. It allows the user to access some basic functions related to the image created on the canvas (including animation) -->
-            <img id="dogSprite" src="{{site.baseurl}}/images/water.png">  // change sprite here
+            <img id="dogSprite" src="{{site.baseurl}}/images/bigwater.png">  // change sprite here
         </canvas>
         <div id="controls"> <!--basic radio buttons which can be used to check whether each individual animaiton works -->
             <input type="radio" name="animation" id="idle" checked>
@@ -32,8 +32,8 @@ courses: { compsci: {week: 0} }
     window.addEventListener('load', function () {
         const canvas = document.getElementById('spriteContainer');
         const ctx = canvas.getContext('2d');
-        const SPRITE_WIDTH = 225;  // matches sprite pixel width
-        const SPRITE_HEIGHT = 124; // matches sprite pixel height
+        const SPRITE_WIDTH = 218;  // matches sprite pixel width
+        const SPRITE_HEIGHT = 280; // matches sprite pixel height
         const FRAME_LIMIT = 2;  // matches number of frames per sprite row, this code assume each row is same
 
         const SCALE_FACTOR = 1;  // control size of sprite on canvas
