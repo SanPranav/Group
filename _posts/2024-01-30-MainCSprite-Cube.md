@@ -25,7 +25,7 @@ courses: { compsci: {week: 1} }
     // Define gravity value
     let gravity = 1.75;
     // Define jump cooldown time in milliseconds
-    const jumpCooldown = 750;
+    const jumpCooldown = 600;
     // Define the Player class
     class Player {
         constructor() {
@@ -98,7 +98,7 @@ courses: { compsci: {week: 1} }
     //--
     // Load platform image
     let image = new Image();
-    image.src = 'https://samayass.github.io/samayaCSA/images/platform.png'
+    image.file = '/images/darkgreybrickwallpattern.jpg'
     // Create a platform object
     let platform = new Platform(image);
     // Create a player object
@@ -181,5 +181,7 @@ courses: { compsci: {week: 1} }
                 keys.right.pressed = false;
                 break;
         }
-    })
+    });
+
+    
 </script>
