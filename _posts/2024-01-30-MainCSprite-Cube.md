@@ -25,7 +25,7 @@ courses: { compsci: {week: 1} }
     // Define gravity value
     let gravity = 1.75;
     // Define jump cooldown time in milliseconds
-    const jumpCooldown = 600;
+    const jumpCooldown = 400;
     // Define the Player class
     class Player {
         constructor() {
