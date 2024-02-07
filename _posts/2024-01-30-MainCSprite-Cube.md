@@ -98,7 +98,7 @@ courses: { compsci: {week: 1} }
     //--
     // Load platform image
     let image = new Image();
-    image.src = 'https://samayass.github.io/samayaCSA/images/platform.png'
+    image.file = '/images/darkgreybrickwallpattern.jpg'
     // Create a platform object
     let platform = new Platform(image);
     // Create a player object
@@ -112,6 +112,7 @@ courses: { compsci: {week: 1} }
             pressed: false
         }
     }
+    
     // Animation function to continuously update and render the canvas
     function animate() {
         requestAnimationFrame(animate);

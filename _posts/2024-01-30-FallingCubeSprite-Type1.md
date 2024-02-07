@@ -22,12 +22,12 @@ courses: { compsci: {week: 1} }
     </style>
 </head>
 <body>
-    <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+    <canvas id="tetrisCanvas" width="650" height="675"></canvas>
     <script>
         const canvas = document.getElementById("tetrisCanvas");
         const context = canvas.getContext("2d");
         const ROWS = 20;
-        const COLS = 10;
+        const COLS = 21;
         const BLOCK_SIZE = 30;
         const board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
         const tetriminos = [
@@ -154,7 +154,7 @@ courses: { compsci: {week: 1} }
                 moveDown();
             } else if (event.code === "Space") {
                 rotate();
-            }
+            } 
         });
         function gameLoop() {
             moveDown();
