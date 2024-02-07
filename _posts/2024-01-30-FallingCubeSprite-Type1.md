@@ -160,7 +160,6 @@ courses: { compsci: {week: 1} }
             moveDown();
             draw();
         }
-        setInterval(gameLoop, Speed);
         setInterval(gameLoop, 1000);
         spawnTetrimino();
         draw();
