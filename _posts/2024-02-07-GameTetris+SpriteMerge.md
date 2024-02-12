@@ -113,78 +113,7 @@ courses: { compsci: {week: 3} }
         }
     }
     
-    // Animation function to continuously update and render the canvas
-    function animate() {
-        requestAnimationFrame(animate);
-        c.clearRect(0, 0, canvas.width, canvas.height);
-        //--
-        // NEW CODE - DRAW PLATFORM
-        //--
-        platform.draw();
-        player.update();
-        // Control players horizontal movement
-        if (keys.right.pressed && player.position.x + player.width <= canvas.width - 50) {
-            player.velocity.x = 15;
-        } else if (keys.left.pressed && player.position.x >= 50) {
-            player.velocity.x = -15;
-        } else {
-            player.velocity.x = 0;
-        }
-        //--
-        // NEW CODE  - PLATFORM COLLISIONS
-        //--
-        // Check for collision between player and platform
-        if (
-            player.position.y + player.height <= platform.position.y &&
-            player.position.y + player.height + player.velocity.y >= platform.position.y &&
-            player.position.x + player.width >= platform.position.x &&
-            player.position.x <= platform.position.x + platform.width
-        ) {
-            player.velocity.y = 0;
-        }
-    }
-    // Start the animation loop
-    animate();
-    // Event listener for keydown events
-    addEventListener('keydown', ({ keyCode }) => {
-        switch (keyCode) {
-            case 65:
-                console.log('left');
-                keys.left.pressed = true;
-                break;
-            case 83:
-                console.log('down');
-                keys.up.pressed = false;
-                break;
-            case 68:
-                console.log('right');
-                keys.right.pressed = true;
-                break;
-            case 87:
-                console.log('up')
-                player.jump();
-                break;
-        }
-    });
-    // Event listener for keyup events
-    addEventListener('keyup', ({ keyCode }) => {
-        switch (keyCode) {
-            case 65:
-                console.log('left');
-                keys.left.pressed = false;
-                break;
-            case 83:
-                console.log('down');
-                keys.up.pressed = false;
-                break;
-            case 68:
-                console.log('right');
-                keys.right.pressed = false;
-                break;
-        }
-    });
-
-<html lang="en">
+    <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -218,6 +147,7 @@ courses: { compsci: {week: 3} }
         let currentTetrimino;
         let currentX = 0;
         let currentY = 0;
+        const Speed = 500; // Adjust this value as needed
         function drawSquare(x, y, color) {
             context.fillStyle = color;
             context.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -250,7 +180,7 @@ courses: { compsci: {week: 3} }
         function collide() {
             for (let row = 0; row < currentTetrimino.length; row++) {
                 for (let col = 0; col < currentTetrimino[row].length; col++) {
-                    if (currentTetrimino[row][col] && (board[currentY + row] && board[currentY + row][currentX + col]) !== 0) {
+                    if (currentTetrimino[row][col] && ((board[currentY + row] && board[currentY + row][currentX + col]) !== 0)) {
                         return true;
                     }
                 }
@@ -337,9 +267,11 @@ courses: { compsci: {week: 3} }
             draw();
         }
         setInterval(gameLoop, Speed);
-        setInterval(gameLoop, 1000);
         spawnTetrimino();
         draw();
     </script>
+</body>
+</html>
+
 
     
