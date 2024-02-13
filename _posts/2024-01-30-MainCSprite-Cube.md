@@ -86,7 +86,7 @@ courses: { compsci: {week: 1} }
             }
             this.image = image;
             this.width = 650;
-            this.height = 100;
+            this.height = 100;  
         }
         // Method to draw the platform on the canvas
         draw() {
