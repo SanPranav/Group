@@ -4,16 +4,8 @@ comments: True
 layout: post
 title: Game Menu Buttons
 description: Buttons on the Menu
-courses: {'compsci': {'week': 4}}
+courses: { compsci: {week: 3} }
 type: hacks
----
-
----
-toc: true
-comments: false
-layout: none
-type: hacks
-courses: { compsci: {week: 6} }
 ---
 
 <html>
