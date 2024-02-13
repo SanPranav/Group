@@ -46,6 +46,7 @@ courses: { compsci: {week: 1} }
         }
         // Method to draw the player on the canvas
         draw() {
+            c.fillStyle = 'black';
             c.fillStyle = 'white';
             c.fillRect(this.position.x, this.position.y, this.width, this.height);
         }
