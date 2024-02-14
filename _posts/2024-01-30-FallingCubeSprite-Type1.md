@@ -15,7 +15,7 @@ courses: { compsci: {week: 1} }
     <title>Tetris</title>
     <style>
         canvas {
-            border: 1px solid #000;
+            border: 10px solid #808080;
             display: block;
             margin: 20px auto;
         }
