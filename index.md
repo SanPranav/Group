@@ -5,6 +5,6 @@ title: Student Blog
 
 
 ## 2D Game Repository Main Page
-This is about our 2D game, called Doodle Escape!
+>This is the Front Page for Our 2D Game Website!
+>Click on the Games Button to Find All of Our Games!
 
-## Check the Comp Sci Page for Updates on our Game!
