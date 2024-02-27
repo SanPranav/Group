@@ -5,7 +5,7 @@ layout: post
 title: Flappy Bird
 description: A Flappy Bird Game Created by Pranav Santhosh.
 type: hard
-courses: { compsci: {genre: 3} }
+courses: { compsci: {genre: 2} }
 ---
 
 

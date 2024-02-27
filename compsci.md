@@ -1,6 +1,6 @@
 ---
 layout: schedule
-title: Comp Science Game Page
+title: Computer Science Game Page
 units: "1"
 course: games
 ---
