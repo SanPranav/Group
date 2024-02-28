@@ -2,7 +2,7 @@
 comments: True
 layout: post
 title: Aim Trainer
-description: Aim Training Clicking Game
+description: Aim Training Clicking Game. Use your mouse to left-click on all the circles and keep them from reaching the right side of your screen!
 type: tangibles
 courses: {compsci: {week: 0}}
 categories: ['C4.1']

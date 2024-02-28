@@ -3,13 +3,11 @@ toc: false
 comments: false
 layout: post
 title: Bubble Pop!
-description: A game made by shaurya A.
-type: hacks
+description: A game made by shaurya A. Use the Spacer bar to shot the bubbles, and the arrow keys to aim. Connect 3 Bubbles to Pop them! Don't let the bubbles come to your base!
+type: tangibles
 courses: { compsci: {week: 1} }
 ---
 
-
-<!DOCTYPE html>
 <html>
 <head>
  <title>Basic Bust-a-Move / Puzzle Bobble / Bubble Shooter HTML Game</title>

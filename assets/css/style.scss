@@ -170,3 +170,15 @@ h1 {
   .calc-function {
     @extend .button;
   }
+  
+  #header nav ul li a {
+    background: none;
+    background-color: rgb(71, 85, 192);
+    border: none;
+    }
+    #header nav ul li a:hover{
+      border: none;
+      background: none;
+      background-color: rgb(198, 172, 245);
+    color: rgb(0, 0, 0); 
+  }

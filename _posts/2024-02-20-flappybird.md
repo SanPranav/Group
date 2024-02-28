@@ -3,8 +3,8 @@ toc: false
 comments: false
 layout: post
 title: Flappy Bird
-description: A Flappy Bird Game Created by Pranav Santhosh.
-type: hacks
+description: A Flappy Bird Game Created by Pranav Santhosh. Use the spacerbar to jump in between the pillars, and press space to retry. Have fun!
+type: plans
 courses: { compsci: {week: 2} }
 ---
 
