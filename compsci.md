@@ -1,6 +1,6 @@
 ---
 layout: schedule
-title: Computer Science Game Page
-units: "1"
-course: games
+title: Computer Science Time Box Page
+units: "1,2"
+course: compsci
 ---

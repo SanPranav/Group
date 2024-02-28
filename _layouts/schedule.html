@@ -41,14 +41,14 @@ Load all posts with site
 
 <table>
   <tr>
-    <th>Genre</th>
-    <th>Easy</th>
-    <th>Medium</th>
-    <th>HARD</th>
+    <th>Week</th>
+    <th>Plans</th>
+    <th>Hacks(Todo)</th>
+    <th>Tangibles</th>
   </tr>
 
   {%comment%} 
-  <!-- These loops group blogs according to Row (genre) and Column (difficulty) 
+  <!-- These loops group blogs according to Row (week) and Column (category) 
     units = empty array
     sym = value to be used as a separator
     deli = sym forced to array
@@ -60,9 +60,9 @@ Load all posts with site
   {% assign deli = sym | compact %} 
 
   {% for index in (start..end) -%}
-    {% assign easy = null | compact %}
-    {% assign medium = null | compact %}
-    {% assign hard = null | compact %}
+    {% assign plans = null | compact %}
+    {% assign hacks = null | compact %}
+    {% assign tangibles = null | compact %}
 
 
   {%comment%} 
@@ -74,27 +74,27 @@ Load all posts with site
   {%comment%} 
   <!-- prepare data blog post data for evaluation -->
   {%endcomment%}
-        {% assign genre = post.courses[page.course].genre | hard: 0 %}
+        {% assign week = post.courses[page.course].week | tangibles: 0 %}
         {% assign title = post.title | compact %}
         {% assign url = post.url | compact %}
   
   {%comment%} 
-  <!-- process posts for current genre -->
+  <!-- process posts for current week -->
   {%endcomment%}
-        {% if genre == index %} 
+        {% if week == index %} 
 
   {%comment%} 
   <!-- organizing blogs by type -->
   {%endcomment%}
-          {% if post.type == "easy" %} 
-              {% assign easy = easy | unshift: title %}
-              {% assign easy = easy | unshift: url %}
-          {% elsif post.type == "medium" %}
-              {% assign medium = medium | unshift: title %}
-              {% assign medium = medium | unshift: url %} 
-          {% elsif post.type == "hard" %}
-              {% assign hard = hard | unshift: title %}
-              {% assign hard = hard | unshift: url %} 
+          {% if post.type == "plans" %} 
+              {% assign plans = plans | unshift: title %}
+              {% assign plans = plans | unshift: url %}
+          {% elsif post.type == "hacks" %}
+              {% assign hacks = hacks | unshift: title %}
+              {% assign hacks = hacks | unshift: url %} 
+          {% elsif post.type == "tangibles" %}
+              {% assign tangibles = tangibles | unshift: title %}
+              {% assign tangibles = tangibles | unshift: url %} 
           {% else %}
               {% assign uk = uk | unshift: title %}
               {% assign uk = uk | unshift: url %}     
@@ -107,7 +107,7 @@ Load all posts with site
   {%comment%} 
   <!-- ordering units and inserting column delimiters -->
   {%endcomment%}
-  {% assign units = units | concat:easy | concat:deli | concat:medium | concat:deli | concat:hard  %}
+  {% assign units = units | concat:plans | concat:deli | concat:hacks | concat:deli | concat:tangibles  %}
 
   {%comment%} 
   <!-- This Loop is maximum iterationss, since elements are pairs it will decrement a extra times at the end -->

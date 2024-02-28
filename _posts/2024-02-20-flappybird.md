@@ -4,8 +4,8 @@ comments: false
 layout: post
 title: Flappy Bird
 description: A Flappy Bird Game Created by Pranav Santhosh.
-type: hard
-courses: { compsci: {genre: 2} }
+type: tangibles
+courses: { compsci: {week: 3} }
 ---
 
 
@@ -169,7 +169,7 @@ courses: { compsci: {genre: 2} }
         context.fillText(score, 5, 45);
 
         if (gameOver) {
-            context.fillText("GAME OVER.", 5, 90);
+            context.fillText("GAME OVER", 5, 90);
         }
     }
 
