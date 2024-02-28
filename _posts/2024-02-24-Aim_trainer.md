@@ -4,7 +4,7 @@ layout: post
 title: Aim Trainer
 description: Aim Training Clicking Game
 type: hacks
-courses: {'compsci': {'week': 0}}
+courses: {compsci: {week: 0}}
 categories: ['C4.1']
 ---
 <!DOCTYPE html>
