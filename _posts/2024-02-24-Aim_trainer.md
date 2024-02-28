@@ -3,7 +3,7 @@ comments: True
 layout: post
 title: Aim Trainer
 description: Aim Training Clicking Game
-type: hacks
+type: tangibles
 courses: {compsci: {week: 0}}
 categories: ['C4.1']
 ---
