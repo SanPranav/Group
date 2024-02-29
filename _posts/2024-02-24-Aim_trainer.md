@@ -21,7 +21,7 @@ categories: ['C4.1']
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #739BD0;
         }
 
         canvas {
@@ -99,9 +99,9 @@ const BLACK = '#000000';
 
 // Dot parameters
 const DOT_RADIUS = 30;
-const MAX_SPEED = 20;
+const MAX_SPEED = 10;
 const MIN_SPEED = 1;
-const MAX_DOTS = 18;
+const MAX_DOTS = 10;
 
 // Game parameters
 let lives = 100;
