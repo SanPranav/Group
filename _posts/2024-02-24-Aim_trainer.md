@@ -2,9 +2,9 @@
 comments: True
 layout: post
 title: Aim Trainer
-description: Aim Training Clicking Game
-type: hacks
-courses: {'compsci': {'week': 0}}
+description: Aim Training Clicking Game. Use your mouse to left-click on all the circles and keep them from reaching the right side of your screen!
+type: tangibles
+courses: {compsci: {week: 0}}
 categories: ['C4.1']
 ---
 <!DOCTYPE html>
@@ -99,12 +99,12 @@ const BLACK = '#000000';
 
 // Dot parameters
 const DOT_RADIUS = 30;
-const MAX_SPEED = 5;
+const MAX_SPEED = 20;
 const MIN_SPEED = 1;
-const MAX_DOTS = 5;
+const MAX_DOTS = 18;
 
 // Game parameters
-let lives = 25;
+let lives = 100;
 
 // Initialize variables
 let score = 0;
@@ -139,9 +139,9 @@ function updateDot(dot) {
 function displayText() {
     ctx.fillStyle = BLACK;
     ctx.font = '24px Arial';
-    ctx.fillText(`Score: ${score}`, 10, 30);
-    ctx.fillText(`High Score: ${highScore}`, 10, 60);
-    ctx.fillText(`Lives: ${lives}`, 10, 90);
+    ctx.fillText(`Score: ${score}`, 10, 300);
+    ctx.fillText(`High Score: ${highScore}`, 10, 350);
+    ctx.fillText(`Lives: ${lives}`, 10, 400);
 }
 
 // Function to display start screen
@@ -160,7 +160,7 @@ function displayRestartScreen() {
     ctx.font = '36px Arial';
     ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2 - 50);
     ctx.fillText(`Final Score: ${score}`, canvas.width / 2 - 120, canvas.height / 2);
-    ctx.fillText('Click to Restart', canvas.width / 2 - 140, canvas.height / 2 + 50);
+    ctx.fillText('Refresh to Restart', canvas.width / 2 - 140, canvas.height / 2 + 50);
 }
 
 // Main game loop
