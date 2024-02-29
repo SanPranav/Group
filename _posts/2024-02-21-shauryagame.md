@@ -410,6 +410,71 @@ document.addEventListener('keydown', function(e) {
 // start the game
 generateLevel();
 requestAnimationFrame(loop);
+// Variable to keep track of the number of bombs dropped
+let bombCount = 0;
+
+// listen to keyboard events to move the snake
+document.addEventListener('keydown', function(e) {
+  let row = player.row;
+  let col = player.col;
+
+  // left arrow key
+  if (e.which === 37) {
+    col--;
+  }
+  // up arrow key
+  else if (e.which === 38) {
+    row--;
+  }
+  // right arrow key
+  else if (e.which === 39) {
+    col++;
+  }
+  // down arrow key
+  else if (e.which === 40) {
+    row++;
+  }
+  // space key (bomb)
+  else if (
+    e.which === 32 && !cells[row][col] &&
+    // count the number of bombs the player has placed
+    entities.filter((entity) => {
+      return entity.type === types.bomb && entity.owner === player
+    }).length < player.numBombs
+  ) {
+    // Increment bomb count
+    bombCount++;
+
+    // place bomb
+    const bomb = new Bomb(row, col, player.bombSize, player);
+    entities.push(bomb);
+    cells[row][col] = types.bomb;
+  }
+
+  // don't move the player if something is already at that position
+  if (!cells[row][col]) {
+    player.row = row;
+    player.col = col;
+  }
+});
+
+// game loop
+let last;
+let dt;
+function loop(timestamp) {
+  requestAnimationFrame(loop);
+  context.clearRect(0,0,canvas.width,canvas.height);
+
+  // calculate the time difference since the last update. requestAnimationFrame
+  // passes the current timestamp as a parameter to the loop
+  if (!last) {
+    last = timestamp;
+ 
+
+
+
+
+
 </script>
 </body>
 </html>
