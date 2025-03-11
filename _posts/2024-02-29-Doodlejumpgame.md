@@ -38,7 +38,7 @@ courses: { compsci: {week: 2} }
             height: 20,
             velocityY: 0,
             jumpPower: 10,
-            speed: 5 // Speed for left and right movement
+            speed: 20 // Speed for left and right movement
         };
         let platforms = [];
         let score = 0;
